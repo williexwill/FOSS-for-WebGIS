@@ -15,11 +15,20 @@ HTML/CSS for beginners: https://www.youtube.com/watch?v=qz0aGYrrlhU
 
 JS for beginners: https://www.youtube.com/watch?v=W6NZfCO5SIk
 
+Interesting Maps and other links:
+
+https://antievictionmap.com/
+
+https://timberfestival.org.uk/soundsoftheforest-soundmap/
+
+https://www.youtube.com/watch?v=U3Hf0qI4JLc - GRASS GIS 1987
+
 Grading:
 
     50% Homework assignments and final project
     50% Class Participation
     
+Links
 * Introduction
 
 * Web Mapping Fundamentals
@@ -35,11 +44,11 @@ Grading:
         * https://github.com/mapbox/awesome-vector-tiles
         * https://github.com/osmlab/awesome-openstreetmap
 
+* Leaflet
+
 * MapLibre
 
 * d3
-
-* Leaflet
 
 * OpenLayers
 
