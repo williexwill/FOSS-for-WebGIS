@@ -1,6 +1,8 @@
 console.log('loaded');
 
-let map = L.map('map').setView([40.7, -73.7], 11);
+let map = L.map('map').setView([40.7, -73.7], 11); 
+//geojson.io for  lat// 
+//stamen for basemap layers//
 
 let basemap_urls = {
     toner:"https://stamen-tiles.a.ssl.fastly.net/toner/{z}/{x}/{y}.png",
