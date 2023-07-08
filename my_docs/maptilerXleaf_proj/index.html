@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>NYC Community Gardens</title>
+    <!-- Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+
+    <!-- MapTiler SDK -->
+    <script src="https://cdn.maptiler.com/maptiler-sdk-js/latest/maptiler-sdk.umd.js"></script>
+    <link href="https://cdn.maptiler.com/maptiler-sdk-js/latest/maptiler-sdk.css" rel="stylesheet" />
+
+    <!-- MapTiler SDK + Leaflet bindings -->
+    <script src="https://cdn.maptiler.com/leaflet-maptilersdk/latest/leaflet-maptilersdk.js"></script>
+    <script src="https://cdn.maptiler.com/maptiler-geocoding-control/v0.0.95/leaflet.umd.js"></script>
+    <link href="https://cdn.maptiler.com/maptiler-geocoding-control/v0.0.95/style.css" rel="stylesheet" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <style>
+        #map {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="map">
+        <a href="https://www.maptiler.com" style="position:absolute;left:10px;bottom:10px;z-index:999;"><img
+                src="https://api.maptiler.com/resources/logo.svg" alt="MapTiler logo"></a>
+    </div>
+    <p><a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a
+            href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a></p>
+    
+    <script>
+        const key = 'C0glXEYIxSUgeEOGRBxP';
+        const map = L.map('map').setView([40.7, -73.7], 10); //starting position
+        const mtLayer = L.maptilerLayer({
+            style: "https://api.maptiler.com/maps/77f28370-53d7-4601-a173-79d3de75afde/style.json?key=C0glXEYIxSUgeEOGRBxP",
+            geolocate:true
+        }).addTo(map);
+    
+        function onEachFeature(feature, layer) {
+            layer.bindPopup(feature.properties.gardenname);
+        }
+
+        axios('data/GreenThumb Garden Info.geojson').then(resp => {
+            console.log(resp.data)
+            L.geoJSON(resp.data,{
+                style: {color: "green"},
+                onEachFeature: onEachFeature
+             })
+            .addTo(map);
+        });
+    </script>
+</body>
+</html>
