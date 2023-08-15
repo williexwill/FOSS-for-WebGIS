@@ -18,45 +18,33 @@
     <link href="https://cdn.maptiler.com/maptiler-geocoding-control/v0.0.95/style.css" rel="stylesheet" />
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-    <style>
-        #map {
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-        }
-    </style>
+    <!-- CSS Style Sheet-->
+    <link rel="stylesheet" type="text/css" href="styles.css">
+
+    <!-- Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Aboreto&family=Amiri:ital,wght@0,400;0,700;1,400&family=Cinzel&family=EB+Garamond:ital@0;1&family=Sorts+Mill+Goudy&family=Spectral:wght@200&display=swap" rel="stylesheet">
+    
 </head>
 
 <body>
+    <div id = "header">
+        <h1>NYC's GreenThumb Community Gardens</h1>
+    </div>
+
     <div id="map">
+        <button id="filterButton" class="floating-button">OPEN NOW</button>
         <a href="https://www.maptiler.com" style="position:absolute;left:10px;bottom:10px;z-index:999;"><img
                 src="https://api.maptiler.com/resources/logo.svg" alt="MapTiler logo"></a>
     </div>
+
+    
+    
     <p><a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a
             href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a></p>
     
-    <script>
-        const key = 'C0glXEYIxSUgeEOGRBxP';
-        const map = L.map('map').setView([40.7, -73.7], 10); //starting position
-        const mtLayer = L.maptilerLayer({
-            style: "https://api.maptiler.com/maps/77f28370-53d7-4601-a173-79d3de75afde/style.json?key=C0glXEYIxSUgeEOGRBxP",
-            geolocate:true
-        }).addTo(map);
-    
-        function onEachFeature(feature, layer) {
-            layer.bindPopup(feature.properties.gardenname);
-        }
-
-        axios('data/GreenThumb Garden Info.geojson').then(resp => {
-            console.log(resp.data)
-            L.geoJSON(resp.data,{
-                style: {color: "green"},
-                onEachFeature: onEachFeature
-             })
-            .addTo(map);
-        });
-    </script>
+    <script src="test_script.js"></script>
+   
 </body>
 </html>
